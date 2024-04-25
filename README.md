@@ -8,3 +8,6 @@ This repository contains the starter code for many different projects. They are 
 * `prepare` - Starter projects for each of the preparation Learning Activities.
 * `prove` - Starter projects for each of the prove Developer projects.
 * `final` - Starter projects for final project.
+
+This repository was cloned by Ryan Fletcher and he will use it through out the semester to learn more about C#,
+Git, and anything else CSE 210 teaches.
