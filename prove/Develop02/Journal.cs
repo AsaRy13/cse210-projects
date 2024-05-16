@@ -45,7 +45,7 @@ class Journal {
         using (StreamReader read = new StreamReader(importLocation)) {
             string line;
             while((line = read.ReadLine()) != null) {
-                newEntryList = line.Split(",").ToList();
+                newEntryList = line.Split("|").ToList();
                 entries.Add(new Entry());
                 entries[entries.Count() - 1].StoreResponse(newEntryList);
             }
@@ -54,7 +54,7 @@ class Journal {
     private void Export(string exportLocation, string prompt, string text, string date) {
         //Code to add to a csv file.
         using (StreamWriter writer = new StreamWriter(exportLocation, true)) {
-            writer.WriteLine($"{prompt}, {text}, {date}");
+            writer.WriteLine($"{prompt}|{text}|{date}");
         }
     }
 }
