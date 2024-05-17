@@ -40,7 +40,7 @@ class Journal {
         }
     }
     public void Import(string importLocation) {
-        //Code to read a csv file.
+        //Code to read a file.
         entries.Clear();
         using (StreamReader read = new StreamReader(importLocation)) {
             string line;
@@ -52,7 +52,7 @@ class Journal {
         }
     }
     private void Export(string exportLocation, string prompt, string text, string date) {
-        //Code to add to a csv file.
+        //Code to add to a file.
         using (StreamWriter writer = new StreamWriter(exportLocation, true)) {
             writer.WriteLine($"{prompt}|{text}|{date}");
         }
