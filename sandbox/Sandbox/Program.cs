@@ -4,13 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        Account account = new Account();
 
-        Person fred = new Person("Fred", "Fintstone");
+        Console.WriteLine($"You have ${account.GetAccountBalance()}");
 
-        Person steve = new Person("Steve", "Minecraft");
+        account.Withdraw();
 
-        fred.EasternStyleName();
-        steve.WesternStyleName();
+        Console.WriteLine($"You have ${account.GetAccountBalance()}");
     }
 }
