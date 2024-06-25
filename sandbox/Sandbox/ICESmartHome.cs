@@ -2,9 +2,31 @@ using System;
 
 public static class ICESmartHome {
     public static void SmartHome() {
-        Console.Clear();
-        Console.Write("How many rooms do you have in your house that have our smart devices in them?: ");
-        int numberOfRooms = int.Parse(Console.ReadLine());
+        int strquit = 0;
+        int numberOfRooms = 0;
+        while(strquit == 0) {
+            Console.Clear();
+            Console.Write("How many rooms do you have in your house that have our smart devices in them?: ");
+            string numberOfRoomsStr = Console.ReadLine();
+            int strstay = 0;
+
+            try{
+                numberOfRooms = int.Parse(numberOfRoomsStr);
+            }
+            catch(System.FormatException) {
+                strstay = 1;
+                Console.WriteLine();
+                Console.Write("Please input a number!");
+                Thread.Sleep(1000);
+                Console.WriteLine();
+            }
+
+            if(strstay == 0) {
+                strquit = 1;
+            }
+        }
+
+
         House house = new House(numberOfRooms);
 
         int quit = 0;
@@ -26,6 +48,10 @@ public static class ICESmartHome {
                 if(selectionQ.ToLower() == "y") {
                     quit = 1;
                 }
+            }
+            else{
+                Console.WriteLine("I didn't understand that.");
+                Thread.Sleep(1000);
             }
         }
     }

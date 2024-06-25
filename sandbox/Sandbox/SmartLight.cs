@@ -28,10 +28,14 @@ public class SmartLight : SmartDevice {
             }
             else if(userInput == "2") {
                 Console.WriteLine(this.color);
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "3") {
                 quit = 1;
+            }
+            else{
+                Console.WriteLine("I didn't understand that.");
+                Thread.Sleep(1000);
             }
         }
     }

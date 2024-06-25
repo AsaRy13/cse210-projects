@@ -28,25 +28,29 @@ public class SmartTV : SmartDevice {
             if(userInput == "1") {
                 this.volume++;
                 Console.WriteLine($"Volume: {this.volume}");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "2") {
                 this.volume--;
                 Console.WriteLine($"Volume: {this.volume}");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "3") {
                 this.channel++;
                 Console.WriteLine($"Channel: {this.channel}");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "4") {
                 this.channel--;
                 Console.WriteLine($"Channel: {this.channel}");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "5") {
                 quit = 1;
+            }
+            else{
+                Console.WriteLine("I didn't understand that.");
+                Thread.Sleep(1000);
             }
         }
     }

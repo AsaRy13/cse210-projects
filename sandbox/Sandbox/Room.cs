@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 
 public class Room {
     private List<SmartDevice> smartDevices = new List<SmartDevice>();
@@ -69,6 +70,10 @@ public class Room {
             }
             else if(userInput == "10") {
                 quit = 1;
+            }
+            else{
+                Console.WriteLine("I didn't understand that.");
+                Thread.Sleep(1000);
             }
         }
     }
@@ -157,15 +162,35 @@ public class Room {
             Console.WriteLine($"{i + 1}. {smartDevices[i].GetDeviceName()}  {powerStatus}");
         }
         Console.Write("Select a device from the list via its number: ");
-        int userInput = int.Parse(Console.ReadLine());
-        Console.WriteLine();
-        
-        bool devicePowerStatus = smartDevices[userInput - 1].GetDevicePowerStatus();
-        if(devicePowerStatus == true) {
-            smartDevices[userInput - 1].TurnOffDevice();
+        int quit = 0;
+        int userInput = 0;
+
+        while(quit == 0){
+            string userInputString = Console.ReadLine();
+            int stay = 0;
+
+            try{
+                userInput = int.Parse(userInputString);
+            }
+            catch(System.FormatException){
+                stay = 1;
+                Console.Write("I said number!: ");
+            }
+
+            if(stay == 0){
+                Console.WriteLine();
+                quit = 1;
+            }
         }
-        else if(devicePowerStatus == false) {
-            smartDevices[userInput - 1].TurnOnDevice();
+        
+        if(userInput > 0 && userInput <= smartDevices.Count()) {
+            bool devicePowerStatus = smartDevices[userInput - 1].GetDevicePowerStatus();
+            if(devicePowerStatus == true) {
+                smartDevices[userInput - 1].TurnOffDevice();
+            }
+            else if(devicePowerStatus == false) {
+                smartDevices[userInput - 1].TurnOnDevice();
+            }
         }
     }
     public void AccessDeviceMenu() {
@@ -180,15 +205,35 @@ public class Room {
             }
         }
         Console.Write("Select a device from the list via its number: ");
-        int userInput = int.Parse(Console.ReadLine());
-        Console.WriteLine();
+        int userInput = 0;
+        int quit = 0;
         
-        if(smartDevices[userInput - 1].GetDevicePowerStatus()) {
-            smartDevices[userInput - 1].DeviceMenu();
+        while(quit == 0){
+            string userInputString = Console.ReadLine();
+            int stay = 0;
+
+            try{
+                userInput = int.Parse(userInputString);
+            }
+            catch(System.FormatException){
+                stay = 1;
+                Console.Write("I said number!: ");
+            }
+
+            if(stay == 0){
+                Console.WriteLine();
+                quit = 1;
+            }
         }
-        else if(smartDevices[userInput - 1].GetDevicePowerStatus() == false) {
-            Console.WriteLine("That device must be on.");
-            Thread.Sleep(2000);
+
+        if(userInput > 0 && userInput <= smartDevices.Count()) {        
+            if(smartDevices[userInput - 1].GetDevicePowerStatus()) {
+                smartDevices[userInput - 1].DeviceMenu();
+            }
+            else if(smartDevices[userInput - 1].GetDevicePowerStatus() == false) {
+                Console.WriteLine("That device must be on.");
+                Thread.Sleep(1000);
+            }
         }
     }
 }

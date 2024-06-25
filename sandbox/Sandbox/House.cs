@@ -10,9 +10,26 @@ public class House {
             Console.Write("What is the name of this room?: ");
             string roomName = Console.ReadLine();
             Console.WriteLine();
+            int strquit = 0;
+            int smartLights = 0;
             Console.Write("How many smart lights do you have in this room?: ");
-            int smartLights = int.Parse(Console.ReadLine());
-            Console.WriteLine();
+            while(strquit == 0) {
+                string smartLightsStr = Console.ReadLine();
+                int strstay = 0;
+                
+                try{
+                    smartLights = int.Parse(smartLightsStr);
+                }
+                catch(System.FormatException) {
+                    strstay = 1;
+                    Console.Write("Please input a number for this question!: ");
+                }
+
+                if(strstay == 0){
+                    Console.WriteLine();
+                    strquit = 1;
+                }
+            }
             int quit = 0;
             bool smartHeaterBool = false;
             while(quit == 0) {
@@ -33,8 +50,26 @@ public class House {
                     Console.WriteLine();
                 }
             }
+            strquit = 0;
             Console.Write("How many smart TVs do you have in this room?: ");
-            int smartTVs = int.Parse(Console.ReadLine());
+            int smartTVs = 0;
+            while(strquit == 0){
+                string smartTVsString = Console.ReadLine();
+                int strstay = 0;
+
+                try{
+                    smartTVs = int.Parse(smartTVsString);
+                }
+                catch(System.FormatException) {
+                    strstay = 1;
+                    Console.Write("Please input a number for this question!: ");
+                }
+
+                if(strstay == 0) {
+                    Console.WriteLine();
+                    strquit = 1;
+                }
+            }
 
             this.rooms.Add(new Room(roomName, smartLights, smartHeaterBool, smartTVs));
         }
@@ -48,7 +83,28 @@ public class House {
         }
 
         Console.Write("Pick a room via its number in the list: ");
-        int roomNum = int.Parse(Console.ReadLine());
-        rooms[roomNum - 1].Action();
+        int quit = 0;
+        int roomNum = 0;
+        while(quit == 0){
+            string roomNumStr = Console.ReadLine();
+            int stay = 0;
+
+            try{
+                roomNum = int.Parse(roomNumStr);
+            }
+            catch(System.FormatException){
+                stay = 1;
+                Console.Write("I said number!: ");
+            }
+
+            if(stay == 0) {
+                Console.WriteLine();
+                quit = 1;
+            }
+        }
+
+        if(roomNum > 0 && roomNum <= rooms.Count()) {
+            rooms[roomNum - 1].Action();
+        }
     }
 }

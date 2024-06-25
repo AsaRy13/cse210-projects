@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 public class SmartHeater : SmartDevice {
-    private float temperature;
+    private float temperature = 70;
     private float roomTemperature = 70;
 
     public SmartHeater(string deviceName) : base(deviceName) {
@@ -27,18 +27,41 @@ public class SmartHeater : SmartDevice {
 
             if(userInput == "1") {
                 Console.Write($"What temperature would you like to change {this.deviceName} to?: ");
-                this.temperature = float.Parse(Console.ReadLine());
+
+                int strquit = 0;
+
+                while(strquit == 0){
+                    string userInput2 = Console.ReadLine();
+                    int strstay = 0;
+
+                    try{
+                        this.temperature = float.Parse(userInput2);
+                    }
+                    catch(System.FormatException){
+                        strstay = 1;
+                        Console.Write("Please input a number to change the temperature: ");
+                    }
+
+                    if(strstay == 0){
+                        Console.WriteLine();
+                        strquit = 1;
+                    }
+                }
             }
             else if (userInput == "2") {
                 Console.WriteLine($"The temperature that the theromostat is set to is {this.temperature} degrees.");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if (userInput == "3") {
                 Console.WriteLine($"It is currently {this.roomTemperature} degrees. (This is just a placeholder until thermometers can actually be connected to this program.)");
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
             }
             else if(userInput == "4") {
                 quit = 1;
+            }
+            else{
+                Console.WriteLine("I didn't understand that.");
+                Thread.Sleep(1000);
             }
         }
     }

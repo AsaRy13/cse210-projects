@@ -23,6 +23,12 @@ class Program
             else if(userInput == "3") {
                 quit = 1;
             }
+            else {
+                Console.WriteLine();
+                Console.Write("I didn't understand that.");
+                Thread.Sleep(1000);
+                Console.WriteLine();
+            }
         }
     }
 }
