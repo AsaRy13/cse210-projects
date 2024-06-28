@@ -13,7 +13,7 @@ public class ChecklistGoal : Goal {
 
     public override int GetPoints()
     {
-        if(this.timesCompleted == this.timesNeededToComplete){
+        if(this.timesCompleted >= this.timesNeededToComplete){
             return base.GetPoints() + this.progressPoints;
         }
         return this.progressPoints;
