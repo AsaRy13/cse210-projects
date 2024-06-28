@@ -1,0 +1,5 @@
+SimpleGoal<|>100<|>Test1<|>True
+EternalGoal<|>50<|>Test2<|>False
+ChecklistGoal<|>10<|>Test3<|>False<|>100<|>5<|>10
+SimpleGoal<|>100<|>Test4<|>False
+Score<|>250
