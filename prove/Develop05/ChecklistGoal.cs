@@ -23,7 +23,7 @@ public class ChecklistGoal : Goal {
         if(isComplete){
             this.timesCompleted++;
         }
-        if(this.timesCompleted == this.timesNeededToComplete && isComplete){
+        if(this.timesCompleted >= this.timesNeededToComplete && isComplete){
             base.SetIsComplete(isComplete);
         }
         if(isComplete == false){
