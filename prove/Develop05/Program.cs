@@ -53,6 +53,7 @@ class Program
                 Console.Write("Narrator: Are you sure? (y/n): ");
                 string quitInput = Console.ReadLine();
                 if(quitInput.ToLower() == "y") {
+                    Console.Clear();
                     quit = 1;
                 }
             }
