@@ -13,6 +13,7 @@ public class Quest{
         Console.WriteLine("You: Reads List of Your Quests.");
         Console.WriteLine("The List of Your Quests:");
         if(goals.Count() == 0){
+            Console.WriteLine();
             Console.WriteLine("Your Quest List is empty!");
         }
         for(int i = 0; i < goals.Count(); i++){
