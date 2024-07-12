@@ -1,0 +1,2 @@
+# Something to Keep Note of:
+This project's Target Framework is net8.0-windows not net8.0, so it may not work on Linux, but it will work on Windows. Please evaluate this project using a Windows machine.
