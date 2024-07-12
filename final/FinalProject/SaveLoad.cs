@@ -16,7 +16,7 @@ public class SaveLoad {
         this.saveList = new List<Transaction>();
         this.entriesList.Clear();
 
-        string fileLocation = $"./saves/{loadName}";
+        this.fileLocation = $"./saves/{loadName}";
         using (StreamReader read = new StreamReader(fileLocation)) {
             string line;
             while((line = read.ReadLine()) != null) {
