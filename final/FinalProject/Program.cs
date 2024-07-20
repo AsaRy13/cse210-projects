@@ -23,6 +23,7 @@ class Program
             Console.WriteLine("6. Save Changes to This Budget");
             Console.WriteLine("7. Load New Budget");
             Console.WriteLine("8. Quit");
+            Console.WriteLine();
             Console.WriteLine("Narrator: Which option would you like to pick? (Please input the number next to the option that you would like to pick.)");
             Console.Write("You: ");
             string userInput = Console.ReadLine();
@@ -31,9 +32,12 @@ class Program
                 budget.ListTransactions();
             }
             else if(userInput == "2"){
+                Console.Clear();
+                Console.WriteLine("INCOME:");
                 Console.WriteLine("Narrator: Please input the amount");
                 Console.Write("You: $");
                 string userInput2 = Console.ReadLine();
+                Console.WriteLine();
 
                 try{
                     float inputNumber = float.Parse(userInput2);
@@ -44,14 +48,18 @@ class Program
                     budget.NewIncome(inputNumber, userInput3);
                 }
                 catch(System.FormatException){
+                    Console.WriteLine();
                     Console.WriteLine("Narrator: That's not a number");
                     Thread.Sleep(1000);
                 }
             }
             else if(userInput == "3"){
+                Console.Clear();
+                Console.WriteLine("EXPENSE:");
                 Console.WriteLine("Narrator: Please input the amount");
                 Console.Write("You: $");
                 string userInput2 = Console.ReadLine();
+                Console.WriteLine();
 
                 try{
                     float inputNumber = float.Parse(userInput2);
@@ -59,6 +67,7 @@ class Program
                     Console.WriteLine("Narrator: What is the catagory of this expense?");
                     Console.Write("You: ");
                     string userInput3 = Console.ReadLine();
+                    Console.WriteLine();
 
                     Console.WriteLine("Narrator: Finally, what is the name of this expense?");
                     Console.Write("You: ");
@@ -66,19 +75,21 @@ class Program
                     budget.NewExpense(inputNumber, userInput3, userInput4);
                 }
                 catch(System.FormatException){
+                    Console.WriteLine();
                     Console.WriteLine("Narrator: That's not a number");
                     Thread.Sleep(1000);
                 }
             }
             else if(userInput == "4"){
+                Console.Clear();
                 Console.WriteLine("Narrator: Would you also like a trends chart displayed as well? (y/n)");
                 Console.Write("You: ");
                 string userInput2 = Console.ReadLine();
 
-                if(userInput2 == "y"){
+                if(userInput2.ToLower() == "y"){
                     budget.GenerateWeeklyReport(true);
                 }
-                else if(userInput2 == "n"){
+                else if(userInput2.ToLower() == "n"){
                     budget.GenerateWeeklyReport(false);
                 }
                 else{
@@ -87,14 +98,15 @@ class Program
                 }
             }
             else if(userInput == "5"){
+                Console.Clear();
                 Console.WriteLine("Narrator: Would you also like a trends chart displayed as well? (y/n)");
                 Console.Write("You: ");
                 string userInput2 = Console.ReadLine();
 
-                if(userInput2 == "y"){
+                if(userInput2.ToLower() == "y"){
                     budget.GenerateMonthlyReport(true);
                 }
-                else if(userInput2 == "n"){
+                else if(userInput2.ToLower() == "n"){
                     budget.GenerateMonthlyReport(false);
                 }
                 else{
@@ -106,15 +118,16 @@ class Program
                 budget.SaveBudget();
             }
             else if(userInput == "7"){
+                Console.Clear();
                 Console.WriteLine("Narrator: Would you like to save this budget first? (y/n)");
                 Console.Write("You: ");
                 string userInput2 = Console.ReadLine();
 
-                if(userInput2 == "y"){
+                if(userInput2.ToLower() == "y"){
                     budget.SaveBudget();
                     budget = new Budget();
                 }
-                else if(userInput2 == "n"){
+                else if(userInput2.ToLower() == "n"){
                     budget = new Budget();
                 }
                 else{
@@ -122,18 +135,22 @@ class Program
                 }
             }
             else if(userInput == "8"){
+                Console.Clear();
                 Console.WriteLine("Narrator: Would you like to save this budget first? (y/n)");
                 Console.Write("You: ");
                 string userInput2 = Console.ReadLine();
 
-                if(userInput2 == "y"){
+                if(userInput2.ToLower() == "y"){
                     budget.SaveBudget();
+                    Console.Clear();
                     quit = 1;
                 }
-                else if(userInput2 == "n"){
+                else if(userInput2.ToLower() == "n"){
+                    Console.Clear();
                     quit = 1;
                 }
                 else{
+                    Console.WriteLine();
                     Console.WriteLine("Narrator: I didn't understand that.");
                 }
             }

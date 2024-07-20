@@ -88,6 +88,7 @@ public class SaveLoad {
         }
         Console.Write("Press any key to continue...");
         Console.ReadKey();
+        Console.WriteLine();
         return fileNameList;
     }
 }

@@ -8,6 +8,7 @@ class Program
         while(quit == 0) {
             Console.Clear();
             Console.WriteLine();
+            Console.WriteLine(DateTime.Now);
             Console.WriteLine("Sandbox Menu");
             Console.WriteLine("1. ICE Smart Home");
             Console.WriteLine("2. Test");

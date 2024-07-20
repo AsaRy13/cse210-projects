@@ -13,6 +13,10 @@ public abstract class Transaction {
     public float GetAmount() {
         return this.amount;
     }
+    public int GetAmountInt() {
+        int round = Convert.ToInt32(Math.Ceiling(this.amount));
+        return round;
+    }
     public DateTime GetDate() {
         return this.date;
     }

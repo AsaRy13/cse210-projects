@@ -4,6 +4,8 @@ using Microsoft.VisualBasic.Logging;
 public class Budget {
     private List<Transaction> transactionList;
     private SaveLoad saveLoad = new SaveLoad();
+    private ReportGenerator reportGenerator = new ReportGenerator();
+    private ChartCreator chartCreator = new ChartCreator();
 
     public Budget() {
         int quit2 = 0;
@@ -18,12 +20,12 @@ public class Budget {
                 List<string> fileList = this.ListSaves();
                 //Load budget
                 Console.WriteLine("Bank Teller: \"Alright! Which of these budgets would you like me to fetch? (Please input the number right next to the name.)\"");
-                Console.Write("You: ");
                 int inputNumber = 0;
                 int quit = 0;
 
                 if(fileList[0] != null) {
                     while(quit == 0) {
+                        Console.Write("You: ");
                         string secondUserInput = Console.ReadLine();
                         int stay = 0;
                         try{
@@ -69,7 +71,17 @@ public class Budget {
         return fileList;
     }
     public void ListTransactions() {
-        //
+        Console.Clear();
+        Console.WriteLine("You: Casts \"List Transactions\" and reads Budget Scroll.");
+        Console.WriteLine("Name".PadRight(34) + "Amount".PadRight(31) + "Date");
+        float total = 0;
+        for(int i = 0; i < transactionList.Count(); i++) {
+            Console.WriteLine($"{i + 1}.) {transactionList[i].GetName().PadRight(30)}${transactionList[i].GetAmount().ToString().PadRight(30)}{transactionList[i].GetDate()}");
+            total += transactionList[i].GetAmount();
+        }
+        Console.WriteLine(">>>>Total".PadRight(34) + $"${total}");
+        Console.Write("Press any key to continue...");
+        Console.ReadKey();
     }
     public void NewIncome(float amount, string name) {
         transactionList.Add(new Income(DateTime.Now, amount, name));
@@ -78,16 +90,67 @@ public class Budget {
         transactionList.Add(new Expense(DateTime.Now, category, amount, name));
     }
     public void GenerateWeeklyReport(bool chart) {
-        //
+        reportGenerator.SetReport(this.transactionList);
+        Console.Clear();
+        if(chart){
+            Console.WriteLine("Narrator: Also, Would you like your chart to be a pie chart? (y/n)");
+            Console.Write("You: ");
+            string userInput = Console.ReadLine();
+
+            if(userInput.ToLower() == "y"){
+                this.CreateWeeklyChart(true);
+            }
+            else if(userInput.ToLower() == "n"){
+                this.CreateWeeklyChart(false);
+            }
+            else{
+                Console.WriteLine("Narrator: I didn't understand that!");
+                Thread.Sleep(2000);
+            }
+        }
+        Console.WriteLine("Narrator: This report displays transactions from the past seven days.");
+        reportGenerator.DisplayReport(DateTime.Now.AddDays(-6), DateTime.Now);
     }
     public void GenerateMonthlyReport(bool chart) {
-        //
+        reportGenerator.SetReport(this.transactionList);
+        Console.Clear();
+        if(chart){
+            Console.WriteLine("Narrator: Also, Would you like your chart to be a pie chart? (y/n)");
+            Console.Write("You: ");
+            string userInput = Console.ReadLine();
+
+            if(userInput.ToLower() == "y"){
+                this.CreateMonthlyChart(true);
+            }
+            else if(userInput.ToLower() == "n"){
+                this.CreateMonthlyChart(false);
+            }
+            else{
+                Console.WriteLine("Narrator: I didn't understand that!");
+                Thread.Sleep(2000);
+            }
+        }
+        Console.WriteLine("Narrator: This report shows transactions from this calendar month.");
+        reportGenerator.DisplayReport(DateTime.Now.AddDays(1 - DateTime.Now.Day), DateTime.Now);
     }
     public void CreateWeeklyChart(bool pie) {
-        //
+        chartCreator.SetReport(this.transactionList);
+        if(!pie){
+            chartCreator.CreateChart(DateTime.Now.AddDays(-6), DateTime.Now);
+        }
+        else{
+            chartCreator.CreatePieChart(DateTime.Now.AddDays(-6), DateTime.Now);
+        }
     }
     public void CreateMonthlyChart(bool pie) {
-        //
+        reportGenerator.SetReport(this.transactionList);
+        chartCreator.SetReport(this.transactionList);
+        if(!pie){
+            chartCreator.CreateChart(DateTime.Now.AddDays(1 - DateTime.Now.Day), DateTime.Now);
+        }
+        else{
+            chartCreator.CreatePieChart(DateTime.Now.AddDays(1 - DateTime.Now.Day), DateTime.Now);
+        }
     }
     public void SaveBudget(){
         saveLoad.SetSave(transactionList);
