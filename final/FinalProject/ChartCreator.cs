@@ -10,15 +10,10 @@ public class ChartCreator : ReportGenerator {
         amounts.Clear();
         for(int i = 0; i < transactions.Count(); i++) {
             if(transactions[i].GetDate().Day >= startDate.Day && transactions[i].GetDate().Month >= startDate.Month && transactions[i].GetDate().Year >= startDate.Year && transactions[i].GetDate().Day <= endDate.Day && transactions[i].GetDate().Month <= endDate.Month && transactions[i].GetDate().Year <= endDate.Year){
-                if(i > 0){
-                    if(transactions[i].GetDate().Day == transactions[i - 1].GetDate().Day){
-                        dayAmount += transactions[i].GetAmountInt();
-                    }
-                    else{
-                        dayAmount += transactions[i].GetAmountInt();
-                        amounts.Add(dayAmount);
-                        dayAmount = 0;
-                    }
+                if(i == transactions.Count() - 1){
+                    dayAmount += transactions[i].GetAmountInt();
+                    amounts.Add(dayAmount);
+                    dayAmount = 0;
                 }
                 else{
                     if(transactions[i].GetDate().Day == transactions[i + 1].GetDate().Day){
@@ -41,15 +36,10 @@ public class ChartCreator : ReportGenerator {
         amounts.Clear();
         for(int i = 0; i < transactions.Count(); i++) {
             if(transactions[i].GetDate().Day >= startDate.Day && transactions[i].GetDate().Month >= startDate.Month && transactions[i].GetDate().Year >= startDate.Year && transactions[i].GetDate().Day <= endDate.Day && transactions[i].GetDate().Month <= endDate.Month && transactions[i].GetDate().Year <= endDate.Year){
-                if(i > 0){
-                    if(transactions[i].GetDate().Day == transactions[i - 1].GetDate().Day){
-                        dayAmount += transactions[i].GetAmountInt();
-                    }
-                    else{
-                        dayAmount += transactions[i].GetAmountInt();
-                        amounts.Add(dayAmount);
-                        dayAmount = 0;
-                    }
+                if(i == transactions.Count() - 1){
+                    dayAmount += transactions[i].GetAmountInt();
+                    amounts.Add(dayAmount);
+                    dayAmount = 0;
                 }
                 else{
                     if(transactions[i].GetDate().Day == transactions[i + 1].GetDate().Day){
